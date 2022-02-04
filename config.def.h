@@ -28,7 +28,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { ">_", "www", "{}", "^_^", "<><"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -156,21 +156,17 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+        { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ 0,                       	    XF86XK_AudioLowerVolume,  spawn,  SHCMD("/usr/bin/pactl set-sink-volume 0 -5%; kill -34 $(cat ~/.cache/pidofbar)") },
 	{ 0,                       	    XF86XK_AudioRaiseVolume,  spawn,  SHCMD("/usr/bin/pactl set-sink-volume 0 +5%; kill -34 $(cat ~/.cache/pidofbar)") },
 	{ 0,                       	    XF86XK_AudioMute,         spawn,  SHCMD("/usr/bin/pactl set-sink-mute 0 toggle; kill -34 $(cat ~/.cache/pidofbar)") },
 	{ 0,                       	    XF86XK_MonBrightnessDown, spawn, {.v = downbright   } },
 	{ 0,                       	    XF86XK_MonBrightnessUp,   spawn,   {.v = upbright   } },
-    TAGKEYS(                        XK_1,                      0)
+        TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 };
 
 /* button definitions */
