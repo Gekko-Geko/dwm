@@ -157,6 +157,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
         { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
         { MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("prompt 'Do you want to shutdown?' '/usr/bin/loginctl poweroff'")  },
+        { MODKEY|ShiftMask,             XK_P,      spawn,          SHCMD("~/.local/bin/screenshot")  },
 	{ 0,              	        XF86XK_AudioLowerVolume,   spawn,  SHCMD("/usr/bin/pactl set-sink-volume 0 -5%; kill -34 $(cat ~/.cache/pidofbar)") },
 	{ 0,                       	XF86XK_AudioRaiseVolume,   spawn,  SHCMD("/usr/bin/pactl set-sink-volume 0 +5%; kill -34 $(cat ~/.cache/pidofbar)") },
 	{ 0,                       	XF86XK_AudioMute,          spawn,  SHCMD("/usr/bin/pactl set-sink-mute 0 toggle; kill -34 $(cat ~/.cache/pidofbar)") },
