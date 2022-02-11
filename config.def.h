@@ -13,7 +13,7 @@ static unsigned int snap            = 32;       /* snap pixel */
 static int showbar                  = 1;        /* 0 means no bar */
 static int topbar                   = 1;        /* 0 means bottom bar */
 static char dmenufont[]             = "Hack:size=21";
-static const char *fonts[]          = {"Hack:size=21:antialias=true:autohint=true", "Noto Color Emoji:size=20"}; 
+static const char *fonts[]          = {"Hack:size=21:antialias=true:autohint=true", "Noto Color Emoji:size=20"};
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -88,26 +88,6 @@ static const char *termcmd[]    = { "st", NULL };
 static const char *browser[]    = { "firefox-esr", NULL };
 static const char *upbright[]   = { "/usr/bin/brillo", "-q", "-A", "10",  NULL };
 static const char *downbright[] = { "/usr/bin/brillo", "-q", "-U", "10", NULL };
-
-/*
- * Xresources preferences to load at startup
- */
-ResourcePref resources[] = {
-		{ "dmenufont",          STRING,  &dmenufont },
-		{ "normbgcolor",        STRING,  &normbgcolor },
-		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "normfgcolor",        STRING,  &normfgcolor },
-		{ "selbgcolor",         STRING,  &selbgcolor },
-		{ "selbordercolor",     STRING,  &selbordercolor },
-		{ "selfgcolor",         STRING,  &selfgcolor },
-		{ "borderpx",          	INTEGER, &borderpx },
-		{ "snap",          		INTEGER, &snap },
-		{ "showbar",          	INTEGER, &showbar },
-		{ "topbar",          	INTEGER, &topbar },
-		{ "nmaster",          	INTEGER, &nmaster },
-		{ "resizehints",       	INTEGER, &resizehints },
-		{ "mfact",      	 	FLOAT,   &mfact },
-};
 
 #include "movestack.c"
 
