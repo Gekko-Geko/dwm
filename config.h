@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-
+#include "/home/geko/.cache/wal/colors-wal-dwm.h"
  /* appearance */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -13,18 +13,18 @@ static unsigned int snap            = 32;       /* snap pixel */
 static int showbar                  = 1;        /* 0 means no bar */
 static int topbar                   = 1;        /* 0 means bottom bar */
 static char dmenufont[]             = "Hack:size=21";
-static const char *fonts[]          = {"Hack:size=21:antialias=true:autohint=true", "Noto Color Emoji:size=20"}; 
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#ff5722";
-static char selbgcolor[]            = "#ff5722";
-static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
-};
+static const char *fonts[]          = {"Hack:size=21:antialias=true:autohint=true", "Noto Color Emoji:size=20"};
+// static char normbgcolor[]           = "#222222";
+// static char normbordercolor[]       = "#444444";
+// static char normfgcolor[]           = "#bbbbbb";
+// static char selfgcolor[]            = "#eeeeee";
+// static char selbordercolor[]        = "#ff5722";
+// static char selbgcolor[]            = "#ff5722";
+// static char *colors[][3] = {
+//        /*               fg           bg           border   */
+//        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+//        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+// };
 
 /* tagging */
 static const char *tags[] = { ">_", "{}", "www", "^_^", "<><"};
@@ -83,31 +83,11 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
 static const char *termcmd[]    = { "st", NULL };
-static const char *browser[]    = { "firefox-esr", NULL };
+static const char *browser[]    = { "firefox", NULL };
 static const char *upbright[]   = { "/usr/bin/brillo", "-q", "-A", "10",  NULL };
 static const char *downbright[] = { "/usr/bin/brillo", "-q", "-U", "10", NULL };
-
-/*
- * Xresources preferences to load at startup
- */
-ResourcePref resources[] = {
-		{ "dmenufont",          STRING,  &dmenufont },
-		{ "normbgcolor",        STRING,  &normbgcolor },
-		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "normfgcolor",        STRING,  &normfgcolor },
-		{ "selbgcolor",         STRING,  &selbgcolor },
-		{ "selbordercolor",     STRING,  &selbordercolor },
-		{ "selfgcolor",         STRING,  &selfgcolor },
-		{ "borderpx",          	INTEGER, &borderpx },
-		{ "snap",          		INTEGER, &snap },
-		{ "showbar",          	INTEGER, &showbar },
-		{ "topbar",          	INTEGER, &topbar },
-		{ "nmaster",          	INTEGER, &nmaster },
-		{ "resizehints",       	INTEGER, &resizehints },
-		{ "mfact",      	 	FLOAT,   &mfact },
-};
 
 #include "movestack.c"
 
