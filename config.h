@@ -12,19 +12,8 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static unsigned int snap            = 32;       /* snap pixel */
 static int showbar                  = 1;        /* 0 means no bar */
 static int topbar                   = 1;        /* 0 means bottom bar */
-static char dmenufont[]             = "Hack:size=21";
-static const char *fonts[]          = {"Hack:size=21:antialias=true:autohint=true", "Noto Color Emoji:size=20"};
-// static char normbgcolor[]           = "#222222";
-// static char normbordercolor[]       = "#444444";
-// static char normfgcolor[]           = "#bbbbbb";
-// static char selfgcolor[]            = "#eeeeee";
-// static char selbordercolor[]        = "#ff5722";
-// static char selbgcolor[]            = "#ff5722";
-// static char *colors[][3] = {
-//        /*               fg           bg           border   */
-//        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-//        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
-// };
+static char dmenufont[]             = "Hack:size=18";
+static const char *fonts[]          = {"Hack:size=18:antialias=true:autohint=true", "Noto Color Emoji:size=18"};
 
 /* tagging */
 static const char *tags[] = { ">_", "{}", "www", "^_^", "<><"};
@@ -35,8 +24,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
+	{ "Steam",   NULL,     NULL,           1 << 4,    1,          0,           0,        -1 },
+	{ "firefox", NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
 	{ "mpv",     NULL,     NULL,           0,         1,          0,          -1,        -1 },
 	{ "st",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
@@ -86,8 +75,11 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
 static const char *termcmd[]    = { "st", NULL };
 static const char *browser[]    = { "firefox", NULL };
-static const char *upbright[]   = { "/usr/bin/brillo", "-q", "-A", "10",  NULL };
-static const char *downbright[] = { "/usr/bin/brillo", "-q", "-U", "10", NULL };
+static const char *neomutt[]    = { "st", "-e", "neomutt", NULL };
+static const char *shutdown[]   = { "prompt", "Do you want to shutdown?", "systemctl poweroff", NULL};
+static const char *screenshot[] = { "/usr/local/bin/screenshot", NULL };
+static const char *upbright[]   = { "/sbin/brillo", "-q", "-A", "10",  NULL };
+static const char *downbright[] = { "/sbin/brillo", "-q", "-U", "10", NULL };
 
 #include "movestack.c"
 
@@ -136,11 +128,12 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
         { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-        { MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("prompt 'Do you want to shutdown?' '/usr/bin/loginctl poweroff'")  },
-        { MODKEY|ShiftMask,             XK_P,      spawn,          SHCMD("~/.local/bin/screenshot")  },
-	{ 0,              	        XF86XK_AudioLowerVolume,   spawn,  SHCMD("/usr/bin/pactl set-sink-volume 0 -5%; kill -34 $(cat ~/.cache/pidofbar)") },
-	{ 0,                       	XF86XK_AudioRaiseVolume,   spawn,  SHCMD("/usr/bin/pactl set-sink-volume 0 +5%; kill -34 $(cat ~/.cache/pidofbar)") },
-	{ 0,                       	XF86XK_AudioMute,          spawn,  SHCMD("/usr/bin/pactl set-sink-mute 0 toggle; kill -34 $(cat ~/.cache/pidofbar)") },
+        { MODKEY|ShiftMask,             XK_x,      spawn,          {.v = shutdown } },
+        { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = screenshot } },
+        { MODKEY,	                XK_m,      spawn,          {.v = neomutt } }, 
+	{ 0,              	        XF86XK_AudioLowerVolume,   spawn,  SHCMD("/usr/bin/pactl set-sink-volume 0 -5%; kill -36 $(pidof goblocks)") },
+	{ 0,                       	XF86XK_AudioRaiseVolume,   spawn,  SHCMD("/usr/bin/pactl set-sink-volume 0 +5%; kill -36 $(pidof goblocks)") },
+	{ 0,                       	XF86XK_AudioMute,          spawn,  SHCMD("/usr/bin/pactl set-sink-mute 0 toggle; kill -36 $(pidof goblocks)") },
 	{ 0,                       	XF86XK_MonBrightnessDown,  spawn, {.v = downbright   } },
 	{ 0,                       	XF86XK_MonBrightnessUp,    spawn,   {.v = upbright   } },
         TAGKEYS(                        XK_1,                      0)
