@@ -21,7 +21,20 @@ static const char *fonts[] = {"Hack:size=14:antialias=true:autohint=true",
                               "Noto Color Emoji:size=14"};
 
 /* tagging */
-static const char *tags[] = {">_", "{}", "www", "^_^", "<><"};
+static const char *tags[] = {"", "", "", "", ""};
+
+static const char *tagsel[][2] = {
+	{ "#cc231d", "#1d2021" },
+	{ "#d79921", "#1d2021" },
+	{ "#689d6a", "#1d2021" },
+	{ "#98971a", "#1d2021" },
+	{ "#d65d0e", "#1d2021" },
+};
+
+static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -30,16 +43,15 @@ static const Rule rules[] = {
      */
     /* class     instance  title           tags mask  isfloating  isterminal
        noswallow  monitor */
-    {"Steam", NULL, NULL, 1 << 4, 1, 0, 0, -1},
-    {"firefox", NULL, NULL, 1 << 2, 0, 0, -1, -1},
-    {"mpv", NULL, NULL, 0, 1, 0, -1, -1},
+    {"Steam", NULL, NULL, 1 << 3, 1, 0, 0, -1},
+    {"Firefox", NULL, NULL, 1 << 2, 0, 0, -1, -1},
     {"st", NULL, NULL, 0, 0, 1, 0, -1},
-    {"discord", NULL, NULL, 1 << 1, 0, 0, 0, -1},
+    {"Discord", NULL, NULL, 1 << 1, 0, 0, 0, -1},
     {NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
 };
 
 /* layout(s) */
-static float mfact = 0.55;  /* factor of master area size [0.05..0.95] */
+static float mfact = 0.60;  /* factor of master area size [0.05..0.95] */
 static int nmaster = 1;     /* number of clients in master area */
 static int resizehints = 0; /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen =
@@ -96,7 +108,7 @@ static const char *shutdown[] = {"prompt", "Do you want to shutdown?",
 static const char *screenshot[] = {"/usr/local/bin/screenshot", NULL};
 static const char *upbright[] = {"/sbin/brillo", "-q", "-A", "10", NULL};
 static const char *downbright[] = {"/sbin/brillo", "-q", "-U", "10", NULL};
-static const char *locking[] = {"/usr/local/bin/slock"};
+static const char *locking[] = {"/usr/bin/slock"};
 static const char *vol_up[] = {"/usr/local/bin/volume_up"};
 static const char *vol_down[] = {"/usr/local/bin/volume_down"};
 static const char *vol_mute[] = {"/usr/local/bin/volume_mute"};
