@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-#include "/home/geko/.cache/wal/colors-wal-dwm.h"
+// include "/home/geko/.cache/wal/colors-wal-dwm.h"
 /* appearance */
 static const unsigned int gappih = 20; /* horiz inner gap between windows */
 static const unsigned int gappiv = 10; /* vert inner gap between windows */
